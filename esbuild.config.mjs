@@ -14,7 +14,7 @@ if you want to view the source, please visit the github repository of this plugi
 `;
 
 const prod = process.argv[2] === "production";
-let outdir = "dist";
+let outdir = "obsidian-smart-fold";
 if (!prod) {
   const vaultDir =
     process.env.REAL === "1" ? process.env.REAL_VAULT : process.env.TEST_VAULT;
