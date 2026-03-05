@@ -14,11 +14,13 @@ if you want to view the source, please visit the github repository of this plugi
 `;
 
 const prod = process.argv[2] === "production";
-let outdir = "./";
+let outdir = "dist";
 if (!prod) {
   const vaultDir =
     process.env.REAL === "1" ? process.env.REAL_VAULT : process.env.TEST_VAULT;
-  outdir = `${vaultDir}.obsidian/plugins/${manifest.id}`;
+  if (vaultDir) {
+    outdir = `${vaultDir}.obsidian/plugins/${manifest.id}`;
+  }
 }
 
 console.info(`\nSaving plugin to ${outdir}\n`);

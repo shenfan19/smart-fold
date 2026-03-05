@@ -1,10 +1,5 @@
 # Build artifacts
-build/
 dist/
-*.egg-info/
-*.so
 
 # System files
-.DS_Store
-Thumbs.db
 node_modules
