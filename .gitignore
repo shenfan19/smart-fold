@@ -2,5 +2,8 @@
 smart-fold/
 smart-fold*
 
+# AI support files
+Antigravity*
+
 # System files
 node_modules
