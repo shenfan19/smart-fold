@@ -1,7 +1,7 @@
 import { App, PluginSettingTab, Setting } from "obsidian";
-import AutoFoldPlugin from "./main";
+import SmartFoldPlugin from "./main";
 
-export interface AutoFoldSettings {
+export interface SmartFoldSettings {
     showRibbonH1: boolean;
     showRibbonH2: boolean;
     showRibbonH3: boolean;
@@ -12,7 +12,7 @@ export interface AutoFoldSettings {
     defaultFoldStateOnOpen: string;
 }
 
-export const DEFAULT_SETTINGS: AutoFoldSettings = {
+export const DEFAULT_SETTINGS: SmartFoldSettings = {
     showRibbonH1: true,
     showRibbonH2: true,
     showRibbonH3: true,
@@ -23,10 +23,10 @@ export const DEFAULT_SETTINGS: AutoFoldSettings = {
     defaultFoldStateOnOpen: "none",
 };
 
-export class AutoFoldSettingTab extends PluginSettingTab {
-    plugin: AutoFoldPlugin;
+export class SmartFoldSettingTab extends PluginSettingTab {
+    plugin: SmartFoldPlugin;
 
-    constructor(app: App, plugin: AutoFoldPlugin) {
+    constructor(app: App, plugin: SmartFoldPlugin) {
         super(app, plugin);
         this.plugin = plugin;
     }
@@ -35,13 +35,13 @@ export class AutoFoldSettingTab extends PluginSettingTab {
         const { containerEl } = this;
         containerEl.empty();
 
-        containerEl.createEl("h2", { text: "Auto Fold Ribbon Icons" });
+        containerEl.createEl("h2", { text: "Smart Fold Ribbon Icons" });
         containerEl.createEl("p", {
             text: "Toggle which ribbon icons (left toolbar) you want to see for quick access.",
             cls: "setting-item-description"
         });
 
-        const createToggle = (name: string, desc: string, key: keyof AutoFoldSettings) => {
+        const createToggle = (name: string, desc: string, key: keyof SmartFoldSettings) => {
             new Setting(containerEl)
                 .setName(name)
                 .setDesc(desc)

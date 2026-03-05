@@ -4,7 +4,7 @@ import {
   Plugin,
   addIcon,
 } from "obsidian";
-import { AutoFoldSettings, DEFAULT_SETTINGS, AutoFoldSettingTab } from "./settings";
+import { SmartFoldSettings, DEFAULT_SETTINGS, SmartFoldSettingTab } from "./settings";
 
 const headingLevels = [1, 2, 3, 4, 5, 6];
 
@@ -14,31 +14,31 @@ const createTextSvg = (text: string) => `
 </svg>
 `;
 
-export default class AutoFoldPlugin extends Plugin {
-  public settings: AutoFoldSettings;
+export default class SmartFoldPlugin extends Plugin {
+  public settings: SmartFoldSettings;
   private ribbonElements: Record<string, HTMLElement> = {};
 
   async onload(): Promise<void> {
     await this.loadSettings();
 
     // Add setting tab
-    this.addSettingTab(new AutoFoldSettingTab(this.app, this));
+    this.addSettingTab(new SmartFoldSettingTab(this.app, this));
 
     // Register custom SVG icons
     headingLevels.forEach(level => {
-      addIcon(`autofold-h${level}`, createTextSvg(`H${level}`));
+      addIcon(`smartfold-h${level}`, createTextSvg(`H${level}`));
     });
-    addIcon(`autofold-hs`, createTextSvg(`Hs`));
+    addIcon(`smartfold-hs`, createTextSvg(`Hs`));
 
     // Add ribbon icons
     headingLevels.forEach(level => {
-      this.ribbonElements[`H${level}`] = this.addRibbonIcon(`autofold-h${level}`, `Toggle fold for H${level}`, () => {
+      this.ribbonElements[`H${level}`] = this.addRibbonIcon(`smartfold-h${level}`, `Toggle fold for H${level}`, () => {
         const view = this.app.workspace.getActiveViewOfType(MarkdownView);
         if (view) this.toggleFoldForHeadingLevel(view, level);
       });
     });
 
-    this.ribbonElements['Smart'] = this.addRibbonIcon('autofold-hs', 'Smart Fold (headings without children)', () => {
+    this.ribbonElements['Smart'] = this.addRibbonIcon('smartfold-hs', 'Smart Fold (headings without children)', () => {
       const view = this.app.workspace.getActiveViewOfType(MarkdownView);
       if (view) this.foldHeadingsWithoutChildren(view);
     });
