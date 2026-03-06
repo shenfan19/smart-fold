@@ -28,7 +28,9 @@ export default class SmartFoldPlugin extends Plugin {
     headingLevels.forEach(level => {
       addIcon(`smartfold-h${level}`, createTextSvg(`H${level}`));
     });
-    addIcon(`smartfold-hs`, createTextSvg(`Hs`));
+    addIcon(`smartfold-hs`, createTextSvg(`HS`));
+    addIcon(`smartfold-hinc`, createTextSvg(`H+`));
+    addIcon(`smartfold-hdec`, createTextSvg(`H-`));
 
     // Add ribbon icons
     headingLevels.forEach(level => {
@@ -41,6 +43,16 @@ export default class SmartFoldPlugin extends Plugin {
     this.ribbonElements['Smart'] = this.addRibbonIcon('smartfold-hs', 'Smart fold (headings without children)', () => {
       const view = this.app.workspace.getActiveViewOfType(MarkdownView);
       if (view) this.foldHeadingsWithoutChildren(view);
+    });
+
+    this.ribbonElements['Inc'] = this.addRibbonIcon('smartfold-hinc', 'Increase heading fold level', () => {
+      const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+      if (view) this.increaseHeadingFoldLevel(null as any, view);
+    });
+
+    this.ribbonElements['Dec'] = this.addRibbonIcon('smartfold-hdec', 'Decrease heading fold level', () => {
+      const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+      if (view) this.decreaseHeadingFoldLevel(null as any, view);
     });
 
     // Refresh visibility
@@ -73,8 +85,9 @@ export default class SmartFoldPlugin extends Plugin {
     // Register Commands
     this.addCommand({
       id: "fold-headings-without-children",
-      name: "Fold headings without children",
+      name: "Toggle fold for headings without children",
       checkCallback: (checking: boolean) => {
+        if (!this.settings.showRibbonSmart) return false;
         const view = this.app.workspace.getActiveViewOfType(MarkdownView);
         if (checking) return !!view;
         if (view) this.foldHeadingsWithoutChildren(view);
@@ -83,14 +96,24 @@ export default class SmartFoldPlugin extends Plugin {
 
     this.addCommand({
       id: "increase-fold-level",
-      name: "Increase heading fold level",
-      editorCallback: this.increaseHeadingFoldLevel.bind(this),
+      name: "Increase heading fold level (H+)",
+      checkCallback: (checking: boolean) => {
+        if (!this.settings.showRibbonInc) return false;
+        const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+        if (checking) return !!view;
+        if (view) this.increaseHeadingFoldLevel(null as any, view);
+      },
     });
 
     this.addCommand({
       id: "decrease-fold-level",
-      name: "Decrease heading fold level",
-      editorCallback: this.decreaseHeadingFoldLevel.bind(this),
+      name: "Decrease heading fold level (H-)",
+      checkCallback: (checking: boolean) => {
+        if (!this.settings.showRibbonDec) return false;
+        const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+        if (checking) return !!view;
+        if (view) this.decreaseHeadingFoldLevel(null as any, view);
+      },
     });
 
     headingLevels.forEach((level) => {
@@ -98,6 +121,8 @@ export default class SmartFoldPlugin extends Plugin {
         id: `toggle-fold-heading-level-${level}`,
         name: `Toggle fold for H${level}`,
         checkCallback: (checking: boolean) => {
+          const settingKey = `showRibbonH${level}` as keyof SmartFoldSettings;
+          if (!this.settings[settingKey]) return false;
           const view = this.app.workspace.getActiveViewOfType(MarkdownView);
           if (!view) return false;
           if (checking) return true;
@@ -105,27 +130,6 @@ export default class SmartFoldPlugin extends Plugin {
         },
       });
 
-      this.addCommand({
-        id: `fold-heading-level-${level}`,
-        name: `Fold H${level}`,
-        checkCallback: (checking: boolean) => {
-          const view = this.app.workspace.getActiveViewOfType(MarkdownView);
-          if (!view) return false;
-          if (checking) return true;
-          this.foldLevel(view, level);
-        },
-      });
-
-      this.addCommand({
-        id: `unfold-heading-level-${level}`,
-        name: `Unfold H${level}`,
-        checkCallback: (checking: boolean) => {
-          const view = this.app.workspace.getActiveViewOfType(MarkdownView);
-          if (!view) return false;
-          if (checking) return true;
-          this.unfoldLevel(view, level);
-        },
-      });
     });
   }
 
@@ -137,6 +141,8 @@ export default class SmartFoldPlugin extends Plugin {
     this.ribbonElements['H5'].style.display = this.settings.showRibbonH5 ? "" : "none";
     this.ribbonElements['H6'].style.display = this.settings.showRibbonH6 ? "" : "none";
     this.ribbonElements['Smart'].style.display = this.settings.showRibbonSmart ? "" : "none";
+    this.ribbonElements['Inc'].style.display = this.settings.showRibbonInc ? "" : "none";
+    this.ribbonElements['Dec'].style.display = this.settings.showRibbonDec ? "" : "none";
   }
 
   async loadSettings(): Promise<void> {

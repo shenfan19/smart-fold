@@ -9,6 +9,8 @@ export interface SmartFoldSettings {
     showRibbonH5: boolean;
     showRibbonH6: boolean;
     showRibbonSmart: boolean;
+    showRibbonInc: boolean;
+    showRibbonDec: boolean;
     defaultFoldStateOnOpen: string;
 }
 
@@ -20,6 +22,8 @@ export const DEFAULT_SETTINGS: SmartFoldSettings = {
     showRibbonH5: true,
     showRibbonH6: true,
     showRibbonSmart: true,
+    showRibbonInc: true,
+    showRibbonDec: true,
     defaultFoldStateOnOpen: "none",
 };
 
@@ -36,11 +40,11 @@ export class SmartFoldSettingTab extends PluginSettingTab {
         containerEl.empty();
 
         new Setting(containerEl)
-            .setName("Smart fold ribbon icons")
+            .setName("Ribbon icons")
             .setHeading();
             
         containerEl.createEl("p", {
-            text: "Toggle which ribbon icons (left toolbar) you want to see for quick access.",
+            text: "Toggle which ribbon icons (left toolbar) you want to see. Turning off an icon also disables its corresponding command and hotkey.",
             cls: "setting-item-description"
         });
 
@@ -53,7 +57,7 @@ export class SmartFoldSettingTab extends PluginSettingTab {
                     toggle.onChange(async (value) => {
                         const settings = this.plugin.settings;
                         if (key in settings) {
-                            (settings as any)[key] = value;
+                            (settings[key] as boolean) = value;
                         }
                         await this.plugin.saveSettings();
                         this.plugin.refreshRibbons();
@@ -67,7 +71,9 @@ export class SmartFoldSettingTab extends PluginSettingTab {
         createToggle("Show H4 ribbon icon", "Toggle fold for H4", "showRibbonH4");
         createToggle("Show H5 ribbon icon", "Toggle fold for H5", "showRibbonH5");
         createToggle("Show H6 ribbon icon", "Toggle fold for H6", "showRibbonH6");
-        createToggle("Show smart fold ribbon icon", "Fold headings without children", "showRibbonSmart");
+        createToggle("Show smart fold ribbon icon", "Fold headings without children (HS)", "showRibbonSmart");
+        createToggle("Show increase fold level icon", "Increase heading fold level (H+)", "showRibbonInc");
+        createToggle("Show decrease fold level icon", "Decrease heading fold level (H-)", "showRibbonDec");
 
         new Setting(containerEl)
             .setName("Default fold state on open")

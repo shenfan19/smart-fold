@@ -6,20 +6,22 @@ Smart Fold is a highly optimized and lightweight Obsidian plugin that provides a
 
 **Adaptive Fold/Unfold Shortcuts**: You can add hotkeys to globally increase or decrease the headings' folding depth across the active document.
 
-**Specific Heading Level Toggles**: Easily toggle, fold, or unfold specific heading levels from H1 to H6 individually. Hotkeys can be set for targeting specific levels directly.
+**Specific Heading Level Toggles**: Easily toggle specific heading levels from H1 to H6 individually. Hotkeys can be set for targeting specific levels directly.
 
-**Smart Fold**: An intelligent command that specifically folds all headings that **do not have any children (sub-headings)**. Excellent for cleanly summarizing documents where leaf-node contents get too long.
+**Smart Fold**: An intelligent command that specifically toggles folding for all headings that **do not have any children (sub-headings)**. Excellent for cleanly summarizing documents where leaf-node contents get too long.
 
 **Auto-Fold on Open**: Highly requested feature—configure the plugin to automatically apply a specific fold state whenever you open a new file. You can choose to automatically fold everything to H1, or apply the Smart Fold!
 
-**Ribbon Quick Icons**: Provides quick, aesthetic custom SVG icons on the left Ribbon menu `H1`-`H6` and `Hs` (Smart Fold). Any icon can be optionally hidden in the plugin's settings to keep your workspace clean.
+**Ribbon Quick Icons**: Provides quick, aesthetic custom SVG icons on the left Ribbon menu `H1`-`H6`, `HS` (Smart Fold), `H+` (Increase Fold), and `H-` (Decrease Fold). 
+
+**Unified Toggle Logic**: Turning off a ribbon icon in the plugin's settings will **automatically disable its corresponding command and hotkey**. This keeps your command palette and hotkey list clean and focused only on the 9 core features you use.
 
 ## Usage & Settings
 
 1. Enable the plugin under Community Plugins.
 2. Under **Settings -> Smart Fold**, you can choose which Ribbon Icons you want visible.
 3. You can set the **Default Fold State on Open** from the same panel.
-4. Go to Obsidian's native **Settings -> Hotkeys** and search for `Smart Fold` to assign customized shortcuts to any of the 23 specific folding actions!
+4. Go to Obsidian's native **Settings -> Hotkeys** and search for `Smart Fold` to assign customized shortcuts.
 
 ## Development
 

@@ -68,7 +68,9 @@ const context = await esbuild.context({
 
 if (prod) {
   await context.rebuild();
+  fs.copyFileSync("manifest.json", path.join(outdir, "manifest.json"));
   process.exit(0);
 } else {
   await context.watch();
+  fs.copyFileSync("manifest.json", path.join(outdir, "manifest.json"));
 }
