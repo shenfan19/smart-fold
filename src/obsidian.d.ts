@@ -36,31 +36,31 @@ declare module "obsidian" {
   }
 
   interface EditorSuggestManager {
-    suggests: EditorSuggest<any>[];
+    suggests: EditorSuggest<unknown>[];
   }
 
   export interface Workspace extends Events {
-    on(name: "status-bar-updated", callback: () => any, ctx?: any): EventRef;
-    on(name: "ribbon-bar-updated", callback: () => any, ctx?: any): EventRef;
+    on(name: "status-bar-updated", callback: () => unknown, ctx?: unknown): EventRef;
+    on(name: "ribbon-bar-updated", callback: () => unknown, ctx?: unknown): EventRef;
     on(
       name: "templates:template-appended",
-      callback: (event: TemplaterAppendedEvent) => any,
-      ctx?: any
+      callback: (event: TemplaterAppendedEvent) => unknown,
+      ctx?: unknown
     ): EventRef;
     on(
       name: "templater:new-note-from-template",
-      callback: (event: TemplaterNewNoteEvent) => any,
-      ctx?: any
+      callback: (event: TemplaterNewNoteEvent) => unknown,
+      ctx?: unknown
     ): EventRef;
     on(
       name: "templater:template-appended",
-      callback: (event: TemplaterAppendedEvent) => any,
-      ctx?: any
+      callback: (event: TemplaterAppendedEvent) => unknown,
+      ctx?: unknown
     ): EventRef;
     on(
       name: "templater:overwrite-file",
-      callback: (event: TemplaterOverwriteEvent) => any,
-      ctx?: any
+      callback: (event: TemplaterOverwriteEvent) => unknown,
+      ctx?: unknown
     ): EventRef;
 
     editorSuggest: EditorSuggestOwner;
@@ -91,7 +91,7 @@ declare module "obsidian" {
   }
 
   interface Vault {
-    config: Record<string, any>;
+    config: Record<string, unknown>;
     getConfig<T extends keyof VaultSettings>(setting: T): VaultSettings[T];
   }
 

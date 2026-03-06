@@ -1,5 +1,4 @@
 import {
-  Editor,
   MarkdownView,
   Plugin,
   addIcon,
@@ -47,12 +46,12 @@ export default class SmartFoldPlugin extends Plugin {
 
     this.ribbonElements['Inc'] = this.addRibbonIcon('smartfold-hinc', 'Increase heading fold level', () => {
       const view = this.app.workspace.getActiveViewOfType(MarkdownView);
-      if (view) this.increaseHeadingFoldLevel(null as any, view);
+      if (view) this.increaseHeadingFoldLevel(view);
     });
 
     this.ribbonElements['Dec'] = this.addRibbonIcon('smartfold-hdec', 'Decrease heading fold level', () => {
       const view = this.app.workspace.getActiveViewOfType(MarkdownView);
-      if (view) this.decreaseHeadingFoldLevel(null as any, view);
+      if (view) this.decreaseHeadingFoldLevel(view);
     });
 
     // Refresh visibility
@@ -101,7 +100,7 @@ export default class SmartFoldPlugin extends Plugin {
         if (!this.settings.showRibbonInc) return false;
         const view = this.app.workspace.getActiveViewOfType(MarkdownView);
         if (checking) return !!view;
-        if (view) this.increaseHeadingFoldLevel(null as any, view);
+        if (view) this.increaseHeadingFoldLevel(view);
       },
     });
 
@@ -112,7 +111,7 @@ export default class SmartFoldPlugin extends Plugin {
         if (!this.settings.showRibbonDec) return false;
         const view = this.app.workspace.getActiveViewOfType(MarkdownView);
         if (checking) return !!view;
-        if (view) this.decreaseHeadingFoldLevel(null as any, view);
+        if (view) this.decreaseHeadingFoldLevel(view);
       },
     });
 
@@ -212,7 +211,7 @@ export default class SmartFoldPlugin extends Plugin {
     }
   }
 
-  decreaseHeadingFoldLevel(_editor: Editor, view: MarkdownView) {
+  decreaseHeadingFoldLevel(view: MarkdownView) {
     if (!view.file) return;
     const foldInfo = view.currentMode.getFoldInfo();
     const existingFolds = foldInfo?.folds ?? [];
@@ -241,7 +240,7 @@ export default class SmartFoldPlugin extends Plugin {
     view.onMarkdownFold();
   }
 
-  increaseHeadingFoldLevel(_editor: Editor, view: MarkdownView) {
+  increaseHeadingFoldLevel(view: MarkdownView) {
     if (!view.file) return;
     const foldInfo = view.currentMode.getFoldInfo();
     const existingFolds = foldInfo?.folds ?? [];
