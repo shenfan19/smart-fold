@@ -1,7 +1,7 @@
 {
   "name": "smart-fold",
   "version": "0.1.0",
-  "description": "Smart tools for efficiently folding markdown sections in Obsidian",
+  "description": "Fold headings without child headings to turn long Obsidian notes into clean outlines",
   "author": "Fan Shen",
   "main": "main.js",
   "license": "MIT",

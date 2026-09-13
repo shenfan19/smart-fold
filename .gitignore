@@ -6,4 +6,6 @@ smart-fold*
 Antigravity*
 
 # System files
-node_modules
+node_modules/
+
+c_task/

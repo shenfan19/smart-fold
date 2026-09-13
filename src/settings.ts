@@ -65,13 +65,13 @@ export class SmartFoldSettingTab extends PluginSettingTab {
                 });
         };
 
+        createToggle("Show Smart Fold ribbon icon", "Fold headings without children", "showRibbonSmart");
         createToggle("Show H1 ribbon icon", "Toggle fold for H1", "showRibbonH1");
         createToggle("Show H2 ribbon icon", "Toggle fold for H2", "showRibbonH2");
         createToggle("Show H3 ribbon icon", "Toggle fold for H3", "showRibbonH3");
         createToggle("Show H4 ribbon icon", "Toggle fold for H4", "showRibbonH4");
         createToggle("Show H5 ribbon icon", "Toggle fold for H5", "showRibbonH5");
         createToggle("Show H6 ribbon icon", "Toggle fold for H6", "showRibbonH6");
-        createToggle("Show smart fold ribbon icon", "Fold headings without children", "showRibbonSmart");
         createToggle("Show increase fold level icon", "Increase heading fold level", "showRibbonInc");
         createToggle("Show decrease fold level icon", "Decrease heading fold level", "showRibbonDec");
 
@@ -87,7 +87,7 @@ export class SmartFoldSettingTab extends PluginSettingTab {
                     "h4": "Fold H4",
                     "h5": "Fold H5",
                     "h6": "Fold H6",
-                    "smart": "Smart fold (no children)",
+                    "smart": "Smart Fold (no children)",
                 });
                 cb.setValue(this.plugin.settings.defaultFoldStateOnOpen);
                 cb.onChange(async (value) => {
