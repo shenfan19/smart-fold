@@ -1,6 +1,6 @@
 {
   "name": "smart-fold",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Fold headings without child headings to turn long Obsidian notes into clean outlines",
   "author": "Fan Shen",
   "main": "main.js",

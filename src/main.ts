@@ -16,6 +16,7 @@ const createTextSvg = (text: string) => `
 export default class SmartFoldPlugin extends Plugin {
   public settings: SmartFoldSettings;
   private ribbonElements: Record<string, HTMLElement> = {};
+  private ribbonDefs: Record<string, { icon: string; title: string; setting: keyof SmartFoldSettings; action: (view: MarkdownView) => void }> = {};
 
   async onload(): Promise<void> {
     await this.loadSettings();
@@ -31,30 +32,18 @@ export default class SmartFoldPlugin extends Plugin {
     addIcon(`smartfold-hinc`, createTextSvg(`H+`));
     addIcon(`smartfold-hdec`, createTextSvg(`H-`));
 
-    // Add ribbon icons
+    // Ribbon icons: only enabled ones are registered, so hidden icons do not reappear on startup or in the ribbon context menu
     headingLevels.forEach(level => {
-      this.ribbonElements[`H${level}`] = this.addRibbonIcon(`smartfold-h${level}`, `Toggle fold for H${level}`, () => {
-        const view = this.app.workspace.getActiveViewOfType(MarkdownView);
-        if (view) this.toggleFoldForHeadingLevel(view, level);
-      });
+      this.ribbonDefs[`H${level}`] = {
+        icon: `smartfold-h${level}`,
+        title: `Toggle fold for H${level}`,
+        setting: `showRibbonH${level}` as keyof SmartFoldSettings,
+        action: (view) => this.toggleFoldForHeadingLevel(view, level),
+      };
     });
-
-    this.ribbonElements['Smart'] = this.addRibbonIcon('smartfold-hs', 'Smart fold (headings without children)', () => {
-      const view = this.app.workspace.getActiveViewOfType(MarkdownView);
-      if (view) this.foldHeadingsWithoutChildren(view);
-    });
-
-    this.ribbonElements['Inc'] = this.addRibbonIcon('smartfold-hinc', 'Increase heading fold level', () => {
-      const view = this.app.workspace.getActiveViewOfType(MarkdownView);
-      if (view) this.increaseHeadingFoldLevel(view);
-    });
-
-    this.ribbonElements['Dec'] = this.addRibbonIcon('smartfold-hdec', 'Decrease heading fold level', () => {
-      const view = this.app.workspace.getActiveViewOfType(MarkdownView);
-      if (view) this.decreaseHeadingFoldLevel(view);
-    });
-
-    // Refresh visibility
+    this.ribbonDefs['Smart'] = { icon: 'smartfold-hs', title: 'Smart fold (headings without children)', setting: 'showRibbonSmart', action: (view) => this.foldHeadingsWithoutChildren(view) };
+    this.ribbonDefs['Inc'] = { icon: 'smartfold-hinc', title: 'Increase heading fold level', setting: 'showRibbonInc', action: (view) => this.increaseHeadingFoldLevel(view) };
+    this.ribbonDefs['Dec'] = { icon: 'smartfold-hdec', title: 'Decrease heading fold level', setting: 'showRibbonDec', action: (view) => this.decreaseHeadingFoldLevel(view) };
     this.refreshRibbons();
 
     // File open hook for default folding state
@@ -133,15 +122,23 @@ export default class SmartFoldPlugin extends Plugin {
   }
 
   refreshRibbons() {
-    this.ribbonElements['H1'].style.display = this.settings.showRibbonH1 ? "" : "none";
-    this.ribbonElements['H2'].style.display = this.settings.showRibbonH2 ? "" : "none";
-    this.ribbonElements['H3'].style.display = this.settings.showRibbonH3 ? "" : "none";
-    this.ribbonElements['H4'].style.display = this.settings.showRibbonH4 ? "" : "none";
-    this.ribbonElements['H5'].style.display = this.settings.showRibbonH5 ? "" : "none";
-    this.ribbonElements['H6'].style.display = this.settings.showRibbonH6 ? "" : "none";
-    this.ribbonElements['Smart'].style.display = this.settings.showRibbonSmart ? "" : "none";
-    this.ribbonElements['Inc'].style.display = this.settings.showRibbonInc ? "" : "none";
-    this.ribbonElements['Dec'].style.display = this.settings.showRibbonDec ? "" : "none";
+    for (const [key, def] of Object.entries(this.ribbonDefs)) {
+      const enabled = !!this.settings[def.setting];
+      const el = this.ribbonElements[key];
+      if (enabled && !el) {
+        this.ribbonElements[key] = this.addRibbonIcon(def.icon, def.title, () => {
+          const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+          if (view) def.action(view);
+        });
+      } else if (!enabled && el) {
+        // Same id scheme as Plugin.addRibbonIcon; removeRibbonAction drops the item from the ribbon and its context menu while keeping its saved position
+        const ribbon = this.app.workspace.leftRibbon;
+        ribbon?.removeRibbonAction?.(`${this.manifest.id}:${def.title}`);
+        el.detach();
+        ribbon?.onChange?.(false);
+        delete this.ribbonElements[key];
+      }
+    }
   }
 
   async loadSettings(): Promise<void> {

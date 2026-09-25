@@ -64,6 +64,12 @@ declare module "obsidian" {
     ): EventRef;
 
     editorSuggest: EditorSuggestOwner;
+    leftRibbon?: WorkspaceRibbon;
+  }
+
+  export interface WorkspaceRibbon {
+    removeRibbonAction?(id: string): void;
+    onChange?(save: boolean): void;
   }
   interface VaultSettings {
     legacyEditor: boolean;
