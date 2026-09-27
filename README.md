@@ -38,7 +38,7 @@ Search for **Smart Fold** under **Settings → Community plugins → Browse**, t
 
 ## Development
 
-The project requires Node.js 24.11.1 or later. `npm install` and `npm run build` write `main.js` to the repository root. Releases are built and published by GitHub Actions from a version tag, and the steps are described at the top of `.github/workflows/release.yml`.
+The project requires Node.js 24.11.1 or later. `npm install` and `npm run build` write `main.js` and `manifest.json` to `dist/`. Releases are built and published by GitHub Actions from a version tag, and the steps are described at the top of `.github/workflows/release.yml`.
 
 ## Credits
 

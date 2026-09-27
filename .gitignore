@@ -2,6 +2,7 @@
 /smart-fold/
 /smart-fold*
 /main.js
+dist/
 
 # AI support files
 Antigravity*

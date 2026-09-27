@@ -52,8 +52,8 @@ jobs:
         if: github.ref_type == 'tag'
         with:
           subject-path: |
-            main.js
-            manifest.json
+            dist/main.js
+            dist/manifest.json
 
       - name: Create release
         if: github.ref_type == 'tag'
@@ -62,7 +62,7 @@ jobs:
         run: |
           awk -v heading="## $GITHUB_REF_NAME" '$0 == heading { found = 1; next } /^## / { if (found) exit } found' CHANGELOG.md > release-notes.md
           if [ -s release-notes.md ]; then
-            gh release create "$GITHUB_REF_NAME" main.js manifest.json --title "$GITHUB_REF_NAME" --notes-file release-notes.md
+            gh release create "$GITHUB_REF_NAME" dist/main.js dist/manifest.json --title "$GITHUB_REF_NAME" --notes-file release-notes.md
           else
-            gh release create "$GITHUB_REF_NAME" main.js manifest.json --title "$GITHUB_REF_NAME" --generate-notes
+            gh release create "$GITHUB_REF_NAME" dist/main.js dist/manifest.json --title "$GITHUB_REF_NAME" --generate-notes
           fi

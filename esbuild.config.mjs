@@ -21,9 +21,10 @@ if you want to view the source, please visit the github repository of this plugi
 `;
 
 const prod = process.argv[2] === "production";
-// Production builds go to the repository root, where Obsidian's community
-// directory looks for main.js when it verifies a release against the source.
-let outdir = ".";
+// Production builds go to dist/, one of the folders Obsidian's community
+// directory checks for main.js when it verifies a release against the source.
+// It holds a complete plugin folder: main.js and manifest.json.
+let outdir = "dist";
 if (!prod) {
   const vaultDir =
     process.env.REAL === "1" ? process.env.REAL_VAULT : process.env.TEST_VAULT;
