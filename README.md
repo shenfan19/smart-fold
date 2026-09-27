@@ -28,6 +28,12 @@ A heading counts as a leaf when the next heading after it is at the same level o
 
 Running Smart Fold again unfolds the same sections. Folds you made by hand on other headings are kept either way.
 
+### Folding one heading level
+
+![Folding all H3 sections, then all H2 sections, then the H1 heading, and opening each again](assets/heading-levels.gif)
+
+The **H1** to **H6** icons each toggle all headings of that level in the current note. **H1** to **H3** are on by default, and **H4** to **H6** can be turned on in the settings. If the first heading of that level is folded, all of them are unfolded, otherwise all of them are folded. The matching commands are **Toggle fold for H1** to **Toggle fold for H6**.
+
 ### Folding level by level
 
 ![Folding one heading level at a time with H-, then opening them again with H+](assets/fold-levels.gif)
@@ -36,10 +42,6 @@ Running Smart Fold again unfolds the same sections. Folds you made by hand on ot
 - **H+** does the opposite and opens the shallowest folded level together with every level above it, so repeated clicks reveal the note one level at a time.
 
 The matching commands are **Decrease heading fold level** and **Increase heading fold level**. Both icons are off by default, so turn them on under **Settings → Smart Fold** first.
-
-### Folding one heading level
-
-The **H1** to **H6** icons each toggle all headings of that level in the current note. **H1** to **H3** are on by default, and **H4** to **H6** can be turned on in the settings. If the first heading of that level is folded, all of them are unfolded, otherwise all of them are folded. The matching commands are **Toggle fold for H1** to **Toggle fold for H6**.
 
 ### Fold on open
 

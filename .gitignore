@@ -1,7 +1,7 @@
 # Build artifacts
-smart-fold/
-smart-fold*
-main.js
+/smart-fold/
+/smart-fold*
+/main.js
 
 # AI support files
 Antigravity*
