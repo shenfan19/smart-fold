@@ -14,7 +14,7 @@ This is especially useful for meeting notes, research notes, project plans, long
 - **Step through heading levels**: fold one heading level deeper or shallower at a time with **H-** and **H+**, until the note shows exactly as much detail as you want.
 - **Fold a single heading level**: toggle all H1, H2, H3, H4, H5 or H6 headings of the note at once.
 - **Fold on open**: have every note you open start in Smart Fold or folded to a chosen heading level.
-- **Ribbon icons and hotkeys**: every action has its own ribbon icon and command, so you can click it or give it a hotkey.
+- **Ribbon icons and hotkeys**: every action has its own ribbon icon and command, so you can click it or give it a hotkey. Smart Fold and H1 to H3 are on by default, and the rest can be turned on in the settings.
 - **Only the tools you use**: turning an icon off in the settings also removes its command and hotkey, which keeps the ribbon and the command palette uncluttered.
 - **Native Obsidian folding**: Smart Fold uses the same folds as the arrows next to your headings. Nothing is written into your notes, and you can open any single section again by clicking its arrow.
 
@@ -35,11 +35,11 @@ Running Smart Fold again unfolds the same sections. Folds you made by hand on ot
 - **H-** folds the deepest heading level that is still open. In a note with headings down to H4, the first click folds all H4 sections, the next folds H3, then H2.
 - **H+** does the opposite and opens the shallowest folded level together with every level above it, so repeated clicks reveal the note one level at a time.
 
-The matching commands are **Decrease heading fold level** and **Increase heading fold level**.
+The matching commands are **Decrease heading fold level** and **Increase heading fold level**. Both icons are off by default, so turn them on under **Settings → Smart Fold** first.
 
 ### Folding one heading level
 
-The **H1** to **H6** icons each toggle all headings of that level in the current note. If the first heading of that level is folded, all of them are unfolded, otherwise all of them are folded. The matching commands are **Toggle fold for H1** to **Toggle fold for H6**.
+The **H1** to **H6** icons each toggle all headings of that level in the current note. **H1** to **H3** are on by default, and **H4** to **H6** can be turned on in the settings. If the first heading of that level is folded, all of them are unfolded, otherwise all of them are folded. The matching commands are **Toggle fold for H1** to **Toggle fold for H6**.
 
 ### Fold on open
 
@@ -53,7 +53,7 @@ Under **Settings → Smart Fold → Default fold state on open** you can choose 
 
 ![Smart Fold settings tab](assets/settings.png)
 
-- **Ribbon icons**: choose which of the icons **HS**, **H1** to **H6**, **H+** and **H-** appear in the left ribbon. Turning an icon off also disables its command and any hotkey assigned to it. Turning it back on restores it to its previous place in the ribbon.
+- **Ribbon icons**: choose which of the icons **HS**, **H1** to **H6**, **H+** and **H-** appear in the left ribbon. By default only **HS** and **H1** to **H3** are shown. Turning an icon off also disables its command and any hotkey assigned to it. Turning it back on restores it to its previous place in the ribbon.
 - **Default fold state on open**: see [Fold on open](#fold-on-open).
 
 To assign hotkeys, open Obsidian's **Settings → Hotkeys** and search for `Smart Fold`.

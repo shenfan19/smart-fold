@@ -1,6 +1,6 @@
 {
   "name": "smart-fold",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Fold headings without child headings to turn long Obsidian notes into clean outlines",
   "author": "Fan Shen",
   "main": "main.js",
@@ -24,8 +24,6 @@
     "@types/node": "^16.11.6",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
-    "builtin-modules": "^3.2.0",
-    "dotenv": "^16.0.0",
     "esbuild": "0.25.5",
     "eslint": "^8.3.0",
     "obsidian": "latest",

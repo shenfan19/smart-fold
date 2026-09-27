@@ -56,7 +56,7 @@ export default class SmartFoldPlugin extends Plugin {
           if (defaultState === "none") return;
 
           // Adding a small delay to ensure CodeMirror is fully loaded
-          setTimeout(() => {
+          activeWindow.setTimeout(() => {
             if (defaultState === "smart") {
               this.foldHeadingsWithoutChildren(view, true);
             } else if (defaultState.startsWith("h")) {
@@ -142,7 +142,8 @@ export default class SmartFoldPlugin extends Plugin {
   }
 
   async loadSettings(): Promise<void> {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    const saved = (await this.loadData()) as Partial<SmartFoldSettings> | null;
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, saved);
   }
 
   async saveSettings(): Promise<void> {

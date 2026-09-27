@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.2
+
+### Changed
+
+- Only the Smart Fold and H1 to H3 ribbon icons are enabled by default. H4 to H6 and the increase and decrease fold level icons, together with their commands, can be turned on in the settings. Settings you have already saved are kept.
+- Production builds are written to the repository root.
+
+### Fixed
+
+- The fold state applied when a note opens now uses `activeWindow.setTimeout()`, so it also works in popout windows.
+- Removed the `dotenv` and `builtin-modules` build dependencies in favor of Node's built-in equivalents, and updated development dependencies with known vulnerabilities.
+
 ## 0.1.1
 
 ### Fixed

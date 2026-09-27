@@ -14,16 +14,19 @@ export interface SmartFoldSettings {
     defaultFoldStateOnOpen: string;
 }
 
+// Out of the box only Smart Fold and the H1 to H3 toggles are on, which is
+// what most notes need; H4 to H6 and the H+ / H- steps can be turned on in
+// the settings tab.
 export const DEFAULT_SETTINGS: SmartFoldSettings = {
     showRibbonH1: true,
     showRibbonH2: true,
     showRibbonH3: true,
-    showRibbonH4: true,
-    showRibbonH5: true,
-    showRibbonH6: true,
+    showRibbonH4: false,
+    showRibbonH5: false,
+    showRibbonH6: false,
     showRibbonSmart: true,
-    showRibbonInc: true,
-    showRibbonDec: true,
+    showRibbonInc: false,
+    showRibbonDec: false,
     defaultFoldStateOnOpen: "none",
 };
 
