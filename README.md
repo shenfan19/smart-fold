@@ -1,6 +1,11 @@
-# Smart Fold for Obsidian
+# Smart Fold
 
-Smart Fold turns a long Markdown note into a readable outline with one click.
+[![Obsidian plugin](https://img.shields.io/badge/Obsidian-plugin-7C3AED?logo=obsidian&logoColor=white)](https://community.obsidian.md/plugins/smart-fold)
+[![Latest release](https://img.shields.io/github/v/release/shenfan19/smart-fold?sort=semver)](https://github.com/shenfan19/smart-fold/releases/latest)
+[![Minimum Obsidian version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fshenfan19%2Fsmart-fold%2Fmain%2Fmanifest.json&query=%24.minAppVersion&label=min%20Obsidian&color=blue)](manifest.json)
+[![License](https://img.shields.io/github/license/shenfan19/smart-fold)](LICENSE)
+
+**Smart Fold** is a plugin for [Obsidian](https://obsidian.md) that turns a long Markdown note into a readable outline with one click.
 
 ![Smart Fold folding every section that has no subheadings, then unfolding them again](assets/smart-fold-demo.gif)
 
@@ -69,12 +74,30 @@ If Smart Fold does not show up in the Community Plugins browser yet, install it 
 
 ## Development
 
-The project requires **Node.js >= 24.11.1**. You can install dependencies and build it using:
+The project requires Node.js 24.11.1 or later.
 
 ```bash
 npm install
 npm run build
 ```
+
+The build writes `main.js` to the repository root. To try it in a vault, copy `main.js` and `manifest.json` into `<your-vault>/.obsidian/plugins/smart-fold/`.
+
+### Releasing
+
+Releases are built and published by GitHub Actions, see `.github/workflows/release.yml`. Obsidian's community directory rebuilds every release from source and compares the result with the released `main.js`, so releases are not built locally, where line endings and installed dependency versions can differ.
+
+1. Add a `## <version>` section to `CHANGELOG.md` describing the changes. It becomes the release notes.
+2. Set the same version in `manifest.json` and `package.json`, and add it to `versions.json` together with the `minAppVersion` from `manifest.json`.
+3. Commit and push.
+4. Push a tag named exactly like the version, without a leading `v`:
+
+   ```bash
+   git tag 0.1.3
+   git push origin 0.1.3
+   ```
+
+The workflow checks that the tag matches `manifest.json`, builds the plugin on Linux, and publishes a release with `main.js` and `manifest.json` and their artifact attestations. Obsidian offers the update to users automatically. To check the build without releasing, run the workflow by hand from the Actions tab.
 
 ## Credits
 
