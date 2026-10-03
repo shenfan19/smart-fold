@@ -1,0 +1,11 @@
+name: Idea or feature request
+description: Suggest something Smart Fold could do
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: What you would like to do, and how you do it today.
+    validations:
+      required: true

@@ -3,8 +3,8 @@
 [![Obsidian plugin](https://img.shields.io/badge/Obsidian-plugin-7C3AED?logo=obsidian&logoColor=white)](https://community.obsidian.md/plugins/smart-fold)
 [![Downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcommunity.obsidian.md%2Fapi%2Fv1%2Fplugins%2Fsmart-fold&query=%24.downloads&label=downloads&logo=obsidian&logoColor=white&color=7C3AED)](https://community.obsidian.md/plugins/smart-fold)
 [![Latest release](https://img.shields.io/github/v/release/shenfan19/smart-fold?sort=semver)](https://github.com/shenfan19/smart-fold/releases/latest)
-[![Minimum Obsidian version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fshenfan19%2Fsmart-fold%2Fmain%2Fmanifest.json&query=%24.minAppVersion&label=min%20Obsidian&color=blue)](manifest.json)
-[![License](https://img.shields.io/github/license/shenfan19/smart-fold)](LICENSE)
+[![Minimum Obsidian version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fshenfan19%2Fsmart-fold%2Fmain%2Fmanifest.json&query=%24.minAppVersion&label=min%20Obsidian&color=blue)](https://github.com/shenfan19/smart-fold/blob/main/manifest.json)
+[![License](https://img.shields.io/github/license/shenfan19/smart-fold)](https://github.com/shenfan19/smart-fold/blob/main/LICENSE)
 
 **Smart Fold** is a plugin for [Obsidian](https://obsidian.md) that turns a long Markdown note into a readable outline with one click.
 
@@ -35,6 +35,10 @@ Every action is a ribbon icon and a command, so you can click it or give it a ho
 ## Installation
 
 Search for **Smart Fold** under **Settings → Community plugins → Browse**, then install and enable it. To install manually, copy `main.js` and `manifest.json` from the [latest release](https://github.com/shenfan19/smart-fold/releases/latest) into `<your-vault>/.obsidian/plugins/smart-fold/`.
+
+## Feedback
+
+Found a bug or have an idea? Please [open an issue on GitHub](https://github.com/shenfan19/smart-fold/issues). For a bug, include your Obsidian version and a short note that shows the problem.
 
 ## Development
 

@@ -1,0 +1,43 @@
+name: Bug report
+description: Something in Smart Fold does not work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what happened instead. Screenshots help.
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: Example note
+      description: A short note, or just its headings, that shows the problem.
+      render: markdown
+  - type: input
+    id: obsidian-version
+    attributes:
+      label: Obsidian version
+      description: Shown under Settings → About.
+    validations:
+      required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Smart Fold version
+      description: Shown under Settings → Community plugins.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Android
+        - iOS
+    validations:
+      required: true
