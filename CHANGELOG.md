@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.4
+
+### Changed
+
+- The plugin list description is back to the wording of 0.1.2.
+
 ## 0.1.3
 
 ### Changed

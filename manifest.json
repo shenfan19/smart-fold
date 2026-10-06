@@ -1,8 +1,8 @@
 {
   "id": "smart-fold",
   "name": "Smart Fold",
-  "description": "Collapse a long note to its outline in one click.",
-  "version": "0.1.3",
+  "description": "Fold headings without child headings to turn long notes into clean outlines.",
+  "version": "0.1.4",
   "author": "Fan Shen",
   "authorUrl": "https://github.com/shenfan19/",
   "isDesktopOnly": false,
