@@ -1,7 +1,7 @@
 {
   "name": "smart-fold",
-  "version": "0.1.2",
-  "description": "Turn a long note into an outline with one click by folding every section that has no subheadings. Fold all headings of one level, or one level at a time, using Obsidian's own folds.",
+  "version": "0.1.3",
+  "description": "Collapse a long note to its outline in one click.",
   "author": "Fan Shen",
   "main": "main.js",
   "license": "MIT",
