@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.6
+
+### Fixed
+
+- The TypeScript library setting now includes ES2018, so `Object.entries` is typed without relying on Node's type definitions. This removes the remaining unsafe-type warnings in the ribbon refresh code.
+
 ## 0.1.5
 
 ### Fixed
