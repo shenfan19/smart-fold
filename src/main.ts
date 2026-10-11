@@ -5,6 +5,12 @@ import {
 } from "obsidian";
 import { SmartFoldSettings, DEFAULT_SETTINGS, SmartFoldSettingTab } from "./settings";
 
+// Undocumented ribbon members, absent from the public typings
+interface LeftRibbonInternals {
+  removeRibbonAction?: (id: string) => void;
+  onChange?: (save: boolean) => void;
+}
+
 const headingLevels = [1, 2, 3, 4, 5, 6];
 
 const createTextSvg = (text: string) => `
@@ -56,7 +62,7 @@ export default class SmartFoldPlugin extends Plugin {
           if (defaultState === "none") return;
 
           // Adding a small delay to ensure CodeMirror is fully loaded
-          activeWindow.setTimeout(() => {
+          window.setTimeout(() => {
             if (defaultState === "smart") {
               this.foldHeadingsWithoutChildren(view, true);
             } else if (defaultState.startsWith("h")) {
@@ -132,7 +138,7 @@ export default class SmartFoldPlugin extends Plugin {
         });
       } else if (!enabled && el) {
         // Same id scheme as Plugin.addRibbonIcon; removeRibbonAction drops the item from the ribbon and its context menu while keeping its saved position
-        const ribbon = this.app.workspace.leftRibbon;
+        const ribbon = this.app.workspace.leftRibbon as unknown as LeftRibbonInternals | undefined;
         ribbon?.removeRibbonAction?.(`${this.manifest.id}:${def.title}`);
         el.detach();
         ribbon?.onChange?.(false);

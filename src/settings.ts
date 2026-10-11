@@ -1,4 +1,4 @@
-import { App, PluginSettingTab, Setting } from "obsidian";
+import { App, PluginSettingTab, Setting, SettingDefinition, SettingDefinitionItem } from "obsidian";
 import SmartFoldPlugin from "./main";
 
 export interface SmartFoldSettings {
@@ -38,6 +38,56 @@ export class SmartFoldSettingTab extends PluginSettingTab {
         this.plugin = plugin;
     }
 
+    getSettingDefinitions(): SettingDefinitionItem[] {
+        const toggle = (name: string, desc: string, key: keyof SmartFoldSettings): SettingDefinition => ({
+            name,
+            desc,
+            control: { type: "toggle", key },
+        });
+        return [
+            {
+                type: "group",
+                heading: "Ribbon icons",
+                items: [
+                    toggle("Show Smart Fold ribbon icon", "Fold headings without children", "showRibbonSmart"),
+                    toggle("Show H1 ribbon icon", "Toggle fold for H1", "showRibbonH1"),
+                    toggle("Show H2 ribbon icon", "Toggle fold for H2", "showRibbonH2"),
+                    toggle("Show H3 ribbon icon", "Toggle fold for H3", "showRibbonH3"),
+                    toggle("Show H4 ribbon icon", "Toggle fold for H4", "showRibbonH4"),
+                    toggle("Show H5 ribbon icon", "Toggle fold for H5", "showRibbonH5"),
+                    toggle("Show H6 ribbon icon", "Toggle fold for H6", "showRibbonH6"),
+                    toggle("Show increase fold level icon", "Increase heading fold level", "showRibbonInc"),
+                    toggle("Show decrease fold level icon", "Decrease heading fold level", "showRibbonDec"),
+                ],
+            },
+            {
+                name: "Default fold state on open",
+                desc: "Automatically fold headings when opening a new page.",
+                control: {
+                    type: "dropdown",
+                    key: "defaultFoldStateOnOpen",
+                    options: {
+                        "none": "None (do nothing)",
+                        "h1": "Fold H1",
+                        "h2": "Fold H2",
+                        "h3": "Fold H3",
+                        "h4": "Fold H4",
+                        "h5": "Fold H5",
+                        "h6": "Fold H6",
+                        "smart": "Smart Fold (no children)",
+                    },
+                },
+            },
+        ];
+    }
+
+    async setControlValue(key: string, value: unknown): Promise<void> {
+        (this.plugin.settings as unknown as Record<string, unknown>)[key] = value;
+        await this.plugin.saveSettings();
+        this.plugin.refreshRibbons();
+    }
+
+    // Fallback for Obsidian versions older than 1.13.0, which ignore getSettingDefinitions()
     display(): void {
         const { containerEl } = this;
         containerEl.empty();

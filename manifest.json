@@ -2,7 +2,7 @@
   "id": "smart-fold",
   "name": "Smart Fold",
   "description": "Fold headings without child headings to turn long notes into clean outlines.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "Fan Shen",
   "authorUrl": "https://github.com/shenfan19/",
   "isDesktopOnly": false,

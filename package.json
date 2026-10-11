@@ -1,6 +1,6 @@
 {
   "name": "smart-fold",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Fold headings without child headings to turn long notes into clean outlines.",
   "author": "Fan Shen",
   "main": "main.js",
@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "node esbuild.config.mjs",
     "build": "node esbuild.config.mjs production",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@codemirror/autocomplete": "^6.0.0",
@@ -21,13 +21,15 @@
     "@codemirror/search": "^6.0.0",
     "@codemirror/state": "^6.0.0",
     "@codemirror/view": "^6.0.0",
+    "@eslint/js": "^9.39.5",
+    "@eslint/json": "^0.14.0",
     "@types/node": "^16.11.6",
-    "@typescript-eslint/eslint-plugin": "^5.13.0",
-    "@typescript-eslint/parser": "^5.13.0",
     "esbuild": "0.25.5",
-    "eslint": "^8.3.0",
-    "obsidian": "latest",
+    "eslint": "^9.39.5",
+    "eslint-plugin-obsidianmd": "^0.4.2",
+    "obsidian": "^1.14.4",
     "tslib": "2.4.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.71.1"
   }
 }

@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.5
+
+### Fixed
+
+- The settings tab now uses Obsidian's declarative settings API, so the settings show up in Obsidian's settings search on 1.13.0 and later. Older versions keep the previous settings page.
+- The fold state applied when a note opens uses `window.setTimeout()`, as the community plugin checks require.
+- Removing a ribbon icon no longer relies on untyped access to the ribbon internals.
+
+### Changed
+
+- Linting now uses `eslint-plugin-obsidianmd` with type-checked rules.
+
 ## 0.1.4
 
 ### Changed
