@@ -8,6 +8,8 @@
 
 **Smart Fold** is a plugin for [Obsidian](https://obsidian.md) that turns a long Markdown note into a readable outline with one click.
 
+**Install:** search **Smart Fold** under **Settings → Community plugins → Browse**, or [add it to Obsidian from the community page](https://community.obsidian.md/plugins/smart-fold).
+
 **HS folds every section that has no subheadings**, so the paragraphs disappear and the outline stays. Click again to bring everything back.
 
 ![Smart Fold folding every section that has no subheadings, then unfolding them again](assets/smart-fold-demo.gif)
@@ -34,7 +36,7 @@ Every action is a ribbon icon and a command, so you can click it or give it a ho
 
 ## Installation
 
-Search for **Smart Fold** under **Settings → Community plugins → Browse**, then install and enable it. To install manually, copy `main.js` and `manifest.json` from the [latest release](https://github.com/shenfan19/smart-fold/releases/latest) into `<your-vault>/.obsidian/plugins/smart-fold/`.
+Search for **Smart Fold** under **Settings → Community plugins → Browse**, or open its [community page](https://community.obsidian.md/plugins/smart-fold), then install and enable it. To install manually, copy `main.js` and `manifest.json` from the [latest release](https://github.com/shenfan19/smart-fold/releases/latest) into `<your-vault>/.obsidian/plugins/smart-fold/`.
 
 ## Feedback
 
